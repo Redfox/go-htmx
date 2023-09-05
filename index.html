@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/tailwindcss@0.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body class="h-screen overflow-hidden flex items-center justify-center">
+    <div class="h-screen w-full flex items-center justify-center bg-teal-lightest font-sans">
+        <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
+            <div class="mb-4">
+                <h1 class="text-grey-darkest">Films</h1>
+                <form class="flex mt-4"  hx-post="/add-film" hx-target="#film-list" hx-swap="beforeend">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" name="title" placeholder="Title">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" name="director" placeholder="Director">
+                    <button class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal">Add</button>
+                </form>
+            </div>
+            <div id="film-list">
+                {{ range .Films }}
+                    <div class="flex mb-4 items-center">
+                        <p class="w-full text-grey-darkest">{{ .Title }} - {{ .Director }}</p>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
